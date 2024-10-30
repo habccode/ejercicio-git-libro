@@ -161,7 +161,7 @@ Date:   Wed Oct 23 01:54:58 2024 +0200
 
 ````
 
-## Cambio en el head##
+## Capitulo 2 Cambio en el head##
 
 ````
 $ git add .
@@ -417,7 +417,145 @@ $
 ## Capitulo 9##
 
 ````
+(bibliografia)
+$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 7 commits.
+  (use "git push" to publish your local commits)
 
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ cat > bibliografia.txt
+- Chacon, S. and Straub, B. Pro Git. Apress.
+- Loeliger, J. and McCullough, M. Version control with Git. O'Reilly.
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ git commit -a -m "Añadida nueva referencia bibliográfica."
+On branch main
+Your branch is ahead of 'origin/main' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        bibliografia.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ git merge bibliografia
+error: The following untracked working tree files would be overwritten by merge:
+        bibliografia.txt
+Please move or remove them before you merge.
+Aborting
+Merge with strategy ort failed.
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ git nano bibliografia
+git: 'nano' is not a git command. See 'git --help'.
+
+The most similar commands are
+        annotate
+        daemon
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ # Hacer los cambios indicados en el fichero
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ git commit -a -m "Solucionado conflicto bibliografía."
+On branch main
+Your branch is ahead of 'origin/main' by 7 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        bibliografia.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$ git log --graph --all --oneline
+* 564b1b3 (origin/bibliografia, bibliografia) Añadida nueva referencia bibliográfica.
+* 9ba8b2c Añadida nueva referencia bibliográfica.
+* 1116fc0 Añadida nueva referencia bibliográfica.
+| *   4e4c80d (HEAD -> main) Merge branch 'bibliografia'
+| |\
+| |/
+|/|
+* | 9f28246 Añadida primera referencia bibliográfica.
+| * 05e13af Añadido capítulo 4.
+|/
+* e22c3af Se crea el indice.
+* 6917f4c Añadido capítulo 3.
+* a8c05fd Añadido capítulo 2.
+* f382d42 Añadido Capitulo 1.
+* c31f101 (origin/main, origin/HEAD) Initial commit
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro (main)
+$
+
+
+
+````
+
+## Anexos al README 
+````
+Comentarios del ejercicio 4 comparacion de ramas.
++++ b/README.md
+
+code:
+
+@@ -120,5 +120,379 @@ d1832fe segundo commit: README
+  comparacion 1:
+  1 file changed, 1 insertion(+)
+
+
+  Comnparacion 2:
+  @@ -120,5 +120,379 @@ d1832fe segundo commit: README
+  1 file changed, 1 insertion(+)
+
+
+
+````
+## Revirtiendo conflicto
+````
+ historial
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro/capitulos (main)
+$ git checkout nueva-funcionalidad
+Switched to branch 'nueva-funcionalidad'
+M       README.md
+M       capitulos/capitulo2.txt
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro/capitulos (nueva-funcionalidad)
+$ git merge main
+warning: in the working copy of 'capitulos/capitulo2.txt', LF will be replaced by CRLF the next time Git touches it
+Auto-merging capitulos/capitulo5.txt
+CONFLICT (add/add): Merge conflict in capitulos/capitulo5.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+Usuario@DESKTOP-5OONOR5 MINGW64 ~/documents/tarea_ciclo/ets/ejercicio-git-libro/capitulos (nueva-funcionalidad|MERGING)
+$ git revert
+usage: git revert [--[no-]edit] [-n] [-m <parent-number>] [-s] [-S[<keyid>]] <commit>...
+   or: git revert (--continue | --skip | --abort | --quit)
+
+    --quit                end revert or cherry-pick sequence
+    --continue            resume revert or cherry-pick sequence
+    --abort               cancel revert or cherry-pick sequence
+    --skip                skip current commit and continue
+    --[no-]cleanup <mode> how to strip spaces and #comments from message
+    -n, --no-commit       don't automatically commit
+    --commit              opposite of --no-commit
+    -e, --[no-]edit       edit the commit message
+    -s, --[no-]signoff    add a Signed-off-by trailer
+    -m, --[no-]mainline <parent-number>
+                          select mainline parent
+    --[no-]rerere-autoupdate
+                          update the index with reused conflict resolution if possible
+    --[no-]strategy <strategy>
+                          merge strategy
+    -X, --[no-]strategy-option <option>
+                          option for merge strategy
+    -S, --[no-]gpg-sign[=<key-id>]
+                          GPG sign commit
+    --[no-]reference      use the 'reference' format to refer to commits
 
 ````
 
